@@ -7,8 +7,8 @@
     { name: "Never Go Alone",
       icon: "Wand.png",
       steps: [
-        "+1 Magic Token."        
-        "Trade 2 cards with the player on your left."
+        "+1 Magic Token.",
+        "Trade 2 cards with the player on your left, if able."
       ]
     },
     { name: "Smoke Bomb",
@@ -17,6 +17,13 @@
         "+1 Spy Token.",
         "Remove all cards in play.",
         "Gain 1 Spy token for each card removed this way.",
+      ]
+    },
+    { name: "Triage",
+      icon: "Doctor.png",
+      steps: [
+        "Give all but 1 of your cards to another player.",
+        "+1 Doctor Token for each card in the Patient player's hand."
       ]
     },
   ]
@@ -50,8 +57,25 @@
       border: 1mm solid black;
       border-radius: 2mm;
       height: 88mm;
+      position: relative;
+      font-family: sans-serif;
     }
 
+    .card p{
+      margin: 2mm;
+      font-size: 0.8em;
+    }
+    .icon {
+      position: absolute; top: 2mm; right: 2mm; width: 10mm;
+    }
+
+    .card .name {
+      background-color: #EEE;
+      font-size: 1.5em;
+      padding-top: 5mm;
+      height: 15mm;
+      padding-left: 2mm;
+    }
     .stat{
       text-align: right;
     }
@@ -71,7 +95,7 @@
       <div class="card" v-for="card in getCardsOnPage(i)":key="card.name">
         <div class="name">{{ card.name }} </div>
         <p v-for = "step in card.steps">{{step}}</p>
-        <img :src = "'icons/' + card.icon" />
+        <img :src = "'icons/' + card.icon" class="icon"/>
       </div>
     </div>
   </div>
