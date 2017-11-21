@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vue To Do Example</title>
+  <script src="https://unpkg.com/vue"></script>
+  <style>
+    #app{
+      position: relative;
+    }
+
+    @page {
+
+        /* this affects the margin in the printer settings */
+        margin: 2mm 2mm;
+    }
+
+    body {
+        background: #FFF;
+    }
+    .card-grid{
+      display: grid;
+      page-break-before: always;
+      grid-template-columns: repeat(5, 63mm);
+      grid-template-rows: repeat(2, 88mm);
+      grid-auto-flow: row;
+
+    }
+
+    .card {
+      border: 1mm solid black;
+      border-radius: 2mm;
+      height: 88mm;
+    }
+
+    .stat{
+      text-align: right;
+    }
+
+    .stat-name{
+      position: relative;
+    }
+    .stat-name .right{
+      position: absolute;
+      right: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="card-grid" v-for="i in getPageCount()">
+      <div class="card" v-for="card in getCardsOnPage(i)":key="card.name">
+        <div class="name">{{ card.name }} </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var cards = [
+      { name: "fish"},
+    ]
+
+    for (var i = 0; i < 30; i++){
+      cards.push({name:"fish"});
+    }
+
+    var app = new Vue({
+      el: '#app',
+      data: {
+        cards: cards,
+        pages: [],
+      },
+      methods: {
+        updatePagedCards: function() {
+          var pages = this.pages;
+          for (var i = 0; i < this.cards.length; i++){
+            var card = this.cards[i];
+            var pageIndex = Math.floor(i / 10);
+            if(pages.length <= pageIndex){
+              pages.push([]);
+            }
+            var currentPage = pages[pageIndex];
+            currentPage.push(card);
+
+          }
+          this.pages = pages;
+        },
+        getPageCount: function() {
+          return Math.ceil(this.cards.length / 10);
+        },
+        getCardsOnPage: function(page) {
+          var out = [];
+          for (var i = page * 10; i < (page + 1) * 10; i++){
+            if(typeof this.cards[i] !== 'undefined'){
+              out.push(this.cards[i]);
+            }
+          }
+          console.log(out);
+          return out;
+        }
+      }
+    })
+
+    app.updatePagedCards();
+  </script>
+</body>
+</html>
