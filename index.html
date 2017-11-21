@@ -50,18 +50,22 @@
     <div class="card-grid" v-for="i in getPageCount()">
       <div class="card" v-for="card in getCardsOnPage(i)":key="card.name">
         <div class="name">{{ card.name }} </div>
+        <p v-for = "step in card.steps">{{step}}</p>
+        <img :src = "'icons/' + card.icon" />
       </div>
     </div>
   </div>
 
   <script>
     var cards = [
-      { name: "fish"},
+      { name: "Never Go Alone",
+        icon: "Wand.png",
+        steps: [
+          "Trade 2 cards with the player on your left."
+        ]
+      },
     ]
 
-    for (var i = 0; i < 30; i++){
-      cards.push({name:"fish"});
-    }
 
     var app = new Vue({
       el: '#app',
@@ -89,7 +93,7 @@
         },
         getCardsOnPage: function(page) {
           var out = [];
-          for (var i = page * 10; i < (page + 1) * 10; i++){
+          for (var i = (page - 1) * 10; i < (page) * 10; i++){
             if(typeof this.cards[i] !== 'undefined'){
               out.push(this.cards[i]);
             }
