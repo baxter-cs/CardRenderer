@@ -1,32 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Vue To Do Example</title>
+  <title>Card Sheet Renderer</title>
+  <script src="cards.js"></script>
   <script>
-  var cards = [
-    { name: "Never Go Alone",
-      icon: "Wand.png",
-      steps: [
-        "+1 Magic Token.",
-        "Trade 2 cards with the player on your left, if able."
-      ]
-    },
-    { name: "Smoke Bomb",
-      icon: "Spy.png",
-      steps: [
-        "+1 Spy Token.",
-        "Remove all cards in play.",
-        "Gain 1 Spy token for each card removed this way.",
-      ]
-    },
-    { name: "Triage",
-      icon: "Doctor.png",
-      steps: [
-        "Give all but 1 of your cards to another player.",
-        "+1 Doctor Token for each card in the Patient player's hand."
-      ]
-    },
-  ]
+    if (typeof(cards) === "undefined") {
+      cards = [
+          { name: "Example",
+            icon: "Wand.png",
+            steps: [
+              "+1 Magic Token.",
+              "Test Text."
+            ],
+            rarity: 'C',
+          }
+      ];
+    }
+
 
   </script>
   <script src="https://unpkg.com/vue"></script>
