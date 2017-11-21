@@ -2,6 +2,26 @@
 <html>
 <head>
   <title>Vue To Do Example</title>
+  <script>
+  var cards = [
+    { name: "Never Go Alone",
+      icon: "Wand.png",
+      steps: [
+        "+1 Magic Token."        
+        "Trade 2 cards with the player on your left."
+      ]
+    },
+    { name: "Smoke Bomb",
+      icon: "Spy.png",
+      steps: [
+        "+1 Spy Token.",
+        "Remove all cards in play.",
+        "Gain 1 Spy token for each card removed this way.",
+      ]
+    },
+  ]
+
+  </script>
   <script src="https://unpkg.com/vue"></script>
   <style>
     #app{
@@ -57,14 +77,6 @@
   </div>
 
   <script>
-    var cards = [
-      { name: "Never Go Alone",
-        icon: "Wand.png",
-        steps: [
-          "Trade 2 cards with the player on your left."
-        ]
-      },
-    ]
 
 
     var app = new Vue({
